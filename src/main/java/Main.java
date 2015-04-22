@@ -1,5 +1,8 @@
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
@@ -35,13 +38,14 @@ public class Main extends HttpServlet {
   private void sendApplet(HttpServletRequest req, HttpServletResponse resp)
 	      throws ServletException, IOException {
 	  InputStream is = Main.class.getClassLoader().getResourceAsStream("javaApplets/appletTest.class");
-	  byte[] bytes = new byte[is.available()];
-	  while(is.available() > 0) {
-		  is.read(bytes);
-		  resp.getOutputStream().write(bytes);
-		  bytes = new byte[is.available()];
+	  InputStreamReader isr = new InputStreamReader(is);
+	  char[] chars = new char[1];
+	  while(isr.ready()) {
+		  isr.read(chars);
+		  resp.getWriter().print(chars);
+		  chars = new char[1];
 	  }
-	  is.close();
+	  isr.close();
   }
 
   private void showHome(HttpServletRequest req, HttpServletResponse resp)
