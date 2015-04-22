@@ -16,7 +16,7 @@ public class Main extends HttpServlet {
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
 
-	if(req.getRequestURI().endsWith("appletTestClass.class")) {
+	if(req.getRequestURI().endsWith("appletTestClass")) {
 		sendApplet(req, resp);
 	} if (req.getRequestURI().endsWith("appletTest")) {
       showApplet(req,resp);
@@ -29,7 +29,7 @@ public class Main extends HttpServlet {
 	      throws ServletException, IOException {
 	  	resp.getWriter().println("<html><body>");
 	    resp.getWriter().println("<p>Hello from the Java Server!!!</p>");
-	    resp.getWriter().println("<applet code=\"appletTestClass.class\" width=\"300\" height =\"300\"></body></html>");
+	    resp.getWriter().println("<applet code=\"appletTestClass\" width=\"300\" height =\"300\"></body></html>");
   }
   
   private void sendApplet(HttpServletRequest req, HttpServletResponse resp)
