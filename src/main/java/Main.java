@@ -16,10 +16,10 @@ public class Main extends HttpServlet {
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
 
-    if (req.getRequestURI().endsWith("/appletTest")) {
+	if(req.getRequestURI().endsWith("appletTestClass.class")) {
+		sendApplet(req, resp);
+	} if (req.getRequestURI().endsWith("appletTest")) {
       showApplet(req,resp);
-    } else if(req.getRequestURI().endsWith("/appletTest.class")) {
-    	sendApplet(req, resp);
     } else {
       showHome(req,resp);
     }
