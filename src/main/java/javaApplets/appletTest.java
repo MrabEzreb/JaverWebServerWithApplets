@@ -6,11 +6,6 @@ import java.awt.Graphics;
 
 public class appletTest extends Applet {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -1104812228514559016L;
-
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
