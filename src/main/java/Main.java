@@ -42,7 +42,7 @@ public class Main extends HttpServlet {
 	  char[] chars = new char[1];
 	  while(isr.ready()) {
 		  isr.read(chars);
-		  resp.getWriter().print(chars);
+		  resp.getWriter().write(chars);
 		  chars = new char[1];
 	  }
 	  isr.close();
