@@ -27,8 +27,9 @@ public class Main extends HttpServlet {
   
   private void showApplet(HttpServletRequest req, HttpServletResponse resp)
 	      throws ServletException, IOException {
-	    resp.getWriter().print("Hello from the Java Server!!!");
-	    resp.getWriter().print("<applet code=\"appletTest.class\" width=\"300\" height =\"300\">");
+	  	resp.getWriter().println("<html><body>");
+	    resp.getWriter().println("<p>Hello from the Java Server!!!</p>");
+	    resp.getWriter().println("<applet code=\"appletTest.class\" width=\"300\" height =\"300\"></body></html>");
   }
   
   private void sendApplet(HttpServletRequest req, HttpServletResponse resp)
