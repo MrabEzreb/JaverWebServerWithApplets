@@ -1,8 +1,12 @@
 import java.io.IOException;
+import java.io.InputStream;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
+
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.*;
+
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.sql.*;
@@ -12,11 +16,31 @@ public class Main extends HttpServlet {
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
 
-    if (req.getRequestURI().endsWith("/db")) {
-      showDatabase(req,resp);
+    if (req.getRequestURI().endsWith("/appletTest")) {
+      showApplet(req,resp);
+    } else if(req.getRequestURI().endsWith("/appletTest.class")) {
+    	sendApplet(req, resp);
     } else {
       showHome(req,resp);
     }
+  }
+  
+  private void showApplet(HttpServletRequest req, HttpServletResponse resp)
+	      throws ServletException, IOException {
+	    resp.getWriter().print("Hello from the Java Server!!!");
+	    resp.getWriter().print("<applet code=\"appletTest.class\" width=\"300\" height =\"300\">");
+  }
+  
+  private void sendApplet(HttpServletRequest req, HttpServletResponse resp)
+	      throws ServletException, IOException {
+	  InputStream is = Main.class.getClassLoader().getResourceAsStream("appletTest.class");
+	  byte[] bytes = new byte[is.available()];
+	  while(is.available() > 0) {
+		  is.read(bytes);
+		  resp.getOutputStream().write(bytes);
+		  bytes = new byte[is.available()];
+	  }
+	  is.close();
   }
 
   private void showHome(HttpServletRequest req, HttpServletResponse resp)
@@ -24,7 +48,8 @@ public class Main extends HttpServlet {
     resp.getWriter().print("Hello from Java!");
   }
 
-  private void showDatabase(HttpServletRequest req, HttpServletResponse resp)
+  @SuppressWarnings("unused")
+private void showDatabase(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
     Connection connection = null;
     try {
