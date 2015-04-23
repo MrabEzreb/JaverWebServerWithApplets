@@ -32,7 +32,7 @@ public class Main extends HttpServlet {
 	      throws ServletException, IOException {
 	  	resp.getWriter().println("<html><body>");
 	    resp.getWriter().println("<p>Hello from the Java Server!!!</p>");
-	    resp.getWriter().println("<object codetype=\"application/java\" data=\"appletTestClass.class\"width=\"300\" height=\"300\"></object>");
+	    resp.getWriter().println("<object codetype=\"application/java\" classid=\"java:appletTestClass.class\"width=\"300\" height=\"300\"></object>");
   }
   
   private void sendApplet(HttpServletRequest req, HttpServletResponse resp)
